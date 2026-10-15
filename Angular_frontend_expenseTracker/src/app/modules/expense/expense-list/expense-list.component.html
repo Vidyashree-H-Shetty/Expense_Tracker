@@ -1,0 +1,86 @@
+<div class="expense-page">
+
+  
+  <div class="top-bar">
+    <h2>Expense Dashboard</h2>
+
+    <div class="actions">
+      <button class="btn btn-primary" routerLink="/expenses/add">+ Add Expense</button>
+      <button class="btn btn-accent" (click)="downloadPdf()">Export PDF</button>
+      <button class="btn btn-accent" (click)="downloadExcel()">Export Excel</button>
+    </div>
+  </div>
+
+  
+  <div class="form-grid">
+
+    
+    <div class="card">
+      <h3>Add Category</h3>
+
+      <input [(ngModel)]="newCategory" placeholder="Enter category name" />
+      <button class="btn btn-primary" (click)="addCategory()">Add Category</button>
+    </div>
+
+    
+    <div class="card">
+      <h3>Set Budget</h3>
+
+      <select [(ngModel)]="selectedCategoryId">
+        <option value="">Select Category</option>
+        <option *ngFor="let c of categories" [value]="c.id">
+          {{ c.name }}
+        </option>
+      </select>
+
+      <input type="number" [(ngModel)]="budgetAmount" placeholder="Enter amount" />
+      <button class="btn btn-primary" (click)="setBudget()">Set Budget</button>
+    </div>
+
+  </div>
+
+  
+  
+<div class="card expense-list">
+  <h3>All Expenses</h3>
+
+  <div class="table-container">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th style="text-align: right;">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let e of expenses">
+          <td class="category">
+            {{ e.category?.name || 'Uncategorized' }}
+          </td>
+
+          <td class="amount">
+            ₹{{ e.amount | number:'1.2-2' }}
+          </td>
+
+          <td class="date">
+            {{ e.date | date:'mediumDate' }}
+          </td>
+
+          <td class="action-cell">
+            <button class="delete-btn" (click)="deleteExpense(e.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
+
+</div>

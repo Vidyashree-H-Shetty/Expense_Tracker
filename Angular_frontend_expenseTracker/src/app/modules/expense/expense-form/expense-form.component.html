@@ -1,0 +1,38 @@
+<div class="form-page">
+  <div class="form-card">
+    <h2>Add Expense</h2>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Category</label>
+          <select [(ngModel)]="expense.categoryId" name="categoryId" required>
+            <option [value]="0" disabled>-- Select Category --</option>
+            <option *ngFor="let c of categories" [value]="c.id">
+              {{ c.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Amount</label>
+          <input type="number" [(ngModel)]="expense.amount" name="amount" required placeholder="₹ 0.00">
+        </div>
+
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" [(ngModel)]="expense.date" name="date" required>
+        </div>
+        
+        <div class="form-group full-width">
+          <label>Description</label>
+          <input type="text" [(ngModel)]="expense.description" name="description" required placeholder="Enter description">
+        </div>
+      </div>
+
+      <button class="submit-btn" type="submit" [disabled]="expense.categoryId === 0">
+        Add Expense
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="reports-page">
+
+  <div class="reports-header">
+    <h2>Reports</h2>
+    <p class="subtitle">View your spending summary and export your data</p>
+  </div>
+
+  <div class="summary-card">
+    <span class="label">Total Spending</span>
+    <span class="amount">₹ {{ summary | number:'1.2-2' }}</span>
+  </div>
+
+  <div class="export-section">
+    <h3>Export Data</h3>
+    <div class="export-buttons">
+      <button class="export-btn pdf-btn" (click)="downloadPdf()">
+        <span class="icon">📄</span>
+        Download PDF
+      </button>
+      <button class="export-btn excel-btn" (click)="downloadExcel()">
+        <span class="icon">📊</span>
+        Download Excel
+      </button>
+    </div>
+  </div>
+
+</div>

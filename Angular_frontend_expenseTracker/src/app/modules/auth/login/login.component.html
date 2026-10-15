@@ -1,0 +1,67 @@
+<div class="login-wrapper">
+
+  <div class="login-box">
+    <h2>{{ isLoginMode ? 'Secure Login' : 'Create Account' }}</h2>
+
+    <p class="subtitle">
+      {{ isLoginMode 
+        ? 'Enter your credentials to access your account' 
+        : 'Join us to manage your finances' }}
+    </p>
+
+    <form (submit)="handleSubmit(); $event.preventDefault()">
+
+      
+      <input *ngIf="!isLoginMode"
+             [(ngModel)]="form.name"
+             name="name"
+             type="text"
+             placeholder="Full Name"
+             required />
+
+      
+      <input [(ngModel)]="form.email"
+             name="email"
+             type="email"
+             placeholder="Email Address"
+             required />
+
+      
+      <div class="password-field">
+        <input [(ngModel)]="form.password"
+               name="password"
+               [type]="showPassword ? 'text' : 'password'"
+               placeholder="Password"
+               required />
+
+        <span (click)="showPassword = !showPassword">
+          👁️
+        </span>
+      </div>
+
+      
+      <button type="submit">
+        {{ isLoginMode ? 'Sign In' : 'Register Now' }}
+      </button>
+
+      
+      <p class="forgot" *ngIf="isLoginMode">
+      </p>
+
+    </form>
+
+    
+    <div class="toggle-container">
+      <p>
+        {{ isLoginMode ? "Don't have an account?" : "Already have an account?" }}
+        <span (click)="toggleMode()">
+          {{ isLoginMode ? 'Register' : 'Login' }}
+        </span>
+      </p>
+    </div>
+
+    
+
+  </div>
+
+</div>
